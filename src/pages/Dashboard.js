@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { getTrips, createTrip, updateTrip } from '../api';
+import { getTrips, createTrip } from '../api';
 import api from '../api';
 import '../styles/Dashboard.css';
 
