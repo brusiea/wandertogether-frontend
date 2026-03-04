@@ -1,0 +1,43 @@
+.login-page {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+
+.login-bg {
+  position: fixed; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse at 30% 40%, rgba(201,168,76,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 60%, rgba(97,175,239,0.05) 0%, transparent 60%),
+              var(--bg);
+}
+
+.login-box {
+  position: relative; z-index: 1;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 20px; padding: 40px; width: 420px; max-width: 90vw;
+  animation: slideUp 0.3s ease;
+}
+
+.login-logo {
+  font-family: var(--font-display); font-size: 1.8rem;
+  color: var(--cream); margin-bottom: 4px; text-align: center;
+}
+.login-logo em { color: var(--gold); font-style: italic; }
+
+.login-tagline {
+  text-align: center; color: var(--muted); font-size: 0.82rem;
+  margin-bottom: 28px;
+}
+
+.login-tabs {
+  display: flex; background: var(--surface2); border-radius: 10px;
+  padding: 4px; margin-bottom: 24px; gap: 4px;
+}
+.login-tabs button {
+  flex: 1; padding: 8px; border: none; border-radius: 7px;
+  background: transparent; color: var(--muted); font-size: 0.82rem;
+  cursor: pointer; font-family: var(--font-body); transition: 0.15s;
+}
+.login-tabs button.active {
+  background: var(--surface); color: var(--cream);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
