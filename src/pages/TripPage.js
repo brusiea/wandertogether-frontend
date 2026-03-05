@@ -108,8 +108,8 @@ export default function TripPage() {
   const sendInvite = async () => {
     if (!inviteEmail) return;
     try {
-      await api.inviteMember(tripId, inviteEmail);
-      setInviteStatus('Invite sent! ✅');
+      const result = await api.inviteMember(tripId, inviteEmail);
+      setInviteStatus(`link:${result.token}`);
       setInviteEmail('');
     } catch (e) {
       console.error('Invite error:', e.response?.data || e.message);
@@ -609,11 +609,20 @@ export default function TripPage() {
                 </div>
               ))}
             </div>
-            {inviteStatus && <div className={inviteStatus.includes('✅') ? 'success-msg' : 'error-msg'}>{inviteStatus}</div>}
-            <div className="form-group">
-              <label className="form-label">Invite by Email</label>
-              <input className="form-input" placeholder="friend@email.com" value={inviteEmail}
-                onChange={e => setInviteEmail(e.target.value)} />
+            {inviteStatus && inviteStatus.startsWith('link:') ? (
+  <div className="success-msg">
+    ✅ Share this link with your friend:
+    <br />
+    <span
+      style={{ color: 'var(--accent)', fontSize: '0.78rem', wordBreak: 'break-all', cursor: 'pointer' }}
+      onClick={() => navigator.clipboard.writeText(`${window.location.origin}/join/${inviteStatus.replace('link:', '')}`)}
+    >
+      📋 Click to copy invite link
+    </span>
+  </div>
+) : inviteStatus ? (
+  <div className="error-msg">{inviteStatus}</div>
+) : null}
             </div>
             <div className="modal-footer">
               <button className="btn btn-ghost" onClick={() => { setModal(null); setInviteStatus(''); }}>Close</button>
