@@ -111,7 +111,10 @@ export default function TripPage() {
       await api.inviteMember(tripId, inviteEmail);
       setInviteStatus('Invite sent! ✅');
       setInviteEmail('');
-    } catch (e) { setInviteStatus('Failed to send invite'); }
+    } catch (e) {
+      console.error('Invite error:', e.response?.data || e.message);
+      setInviteStatus(e.response?.data?.error || 'Failed to send invite');
+    }
   };
 
   const loadAiSuggestions = async () => {
